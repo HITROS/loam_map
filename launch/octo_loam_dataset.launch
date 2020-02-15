@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <param name="pointcloud_max_z" value="1000" />
+  <param name="pointcloud_min_z" value="-0.2" />
+
+  <!-- Load loam launch -->
+  <include file="/home/zs/LOAM/src/loam_velodyne/launch/loam_velodyne.launch" />
+
+  <!-- Load dataset -->
+  <node pkg="rosbag" type="play" name="playe" output="screen" args="--clock /home/zs/bag/2017-06-08-15-49-45_0.bag "/>
+  
+  <!-- Load publish_pointcloud -->
+  <node name="publish_pointcloud" pkg="loam_map" type="publish_pointcloud" />
+
+
+  <!-- Load ocotmap launch -->
+  <include file="$(find loam_map)/launch/octomaptransform.launch" />
+
+  <!-- RViz -->
+  <node pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find loam_map)/rviz/OctomapShow.rviz"/>
+
+</launch>
+
+ 
+
+		
+ 

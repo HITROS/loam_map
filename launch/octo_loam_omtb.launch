@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <param name="pointcloud_max_z" value="1000" />
+  <param name="pointcloud_min_z" value="-0.2" />
+
+  <!-- Load loam launch -->
+  <include file="/home/zs/LOAM/src/loam_velodyne/launch/hector_loam_velodyne.launch" />
+
+  <!-- Load omtb launch -->
+  <include file="/home/zs/catkin_ws1/src/omtb/omtb_gazebo/launch/1tb_room2.launch" />
+  <!-- <include file="/home/zs/catkin_ws1/src/omtb/omtb_control/launch/automove_1tb_room2.launch" /> -->
+  <include file="/home/zs/catkin_ws1/src/omtb/omtb_control/launch/turtlebot3_key.launch" />
+
+  <!-- Load publish_pointcloud -->
+  <node name="publish_pointcloud" pkg="loam_map" type="publish_pointcloud" />
+
+
+  <!-- Load ocotmap launch -->
+  <include file="$(find loam_map)/launch/octomaptransform.launch" />
+
+  <!-- RViz -->
+  <node pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find loam_map)/rviz/OctomapShow.rviz"/>
+
+</launch>
+
+ 
+
+		
+ 
