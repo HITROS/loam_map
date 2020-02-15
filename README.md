@@ -2,7 +2,7 @@
     功能描述:将loam运行时输出的地图消息转化为二维占据栅格地图并加以保存  
 
     工作流程：
-    .<div align=center><img src="https://raw.githubusercontent.com/HITROS/loam_map/master/src/flow_chart_of_using_%20Loam.png" width="300" height="450" /></div>
+   ![flow_chart_of_using_Loam](https://raw.githubusercontent.com/HITROS/loam_map/master/src/flow_chart_of_using_%20Loam.png)
 ## 准备工作
    1、安装ocotomap
 ```
